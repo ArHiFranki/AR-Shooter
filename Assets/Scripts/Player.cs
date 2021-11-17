@@ -1,8 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    
+    private int _score;
+
+    public event UnityAction<int> ScoreAdded;
+
+    private void Start()
+    {
+        _score = 0;
+        ScoreAdded?.Invoke(_score);
+    }
+
+    public void AddScore()
+    {
+        _score++;
+        ScoreAdded?.Invoke(_score);
+    }
 }
